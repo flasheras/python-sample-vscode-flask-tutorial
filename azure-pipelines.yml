@@ -3,6 +3,9 @@
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
+variables:
+  imageName: 'python-sample-vscode-flask-tutorial'
+
 trigger:
 - master
 
@@ -48,9 +51,6 @@ steps:
     codeCoverageTool: Cobertura
     summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/coverage.xml'
     reportDirectory: '$(System.DefaultWorkingDirectory)/**/htmlcov'
-
-variables:
-  imageName: 'python-sample-vscode-flask-tutorial'
 
 - task: Docker@2
   displayName: Build an image
