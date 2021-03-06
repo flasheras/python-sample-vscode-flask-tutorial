@@ -35,10 +35,10 @@ steps:
     pip install pytest-cov
     pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
   displayName: 'pytest'
-- task: Bash@3
-  displayName: 'Cat coverage'
+  
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
   inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      cat junit/test-results.xml
+    testResultsFiles: '**/test-*.xml'
+    testRunTitle: 'Publish test results for Python $(python.version)'
+  displayname: 'Publish test results'
