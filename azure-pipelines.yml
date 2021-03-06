@@ -41,7 +41,7 @@ steps:
     script: |
       # Write your commands here
       echo 'Show Python version'
-      python -version
+      python --version
 
 - task: Bash@3
   displayName: 'Show PATH'
