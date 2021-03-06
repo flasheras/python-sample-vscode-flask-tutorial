@@ -34,3 +34,20 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+- task: Bash@3
+  displayName: 'Version python'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo 'Show Python version'
+      python -version
+
+- task: Bash@3
+  displayName: 'Show PATH'
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      echo $PATH
+      
