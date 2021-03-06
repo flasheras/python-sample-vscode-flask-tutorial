@@ -32,22 +32,12 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
+    pytest tests --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml --cov-report=html
   displayName: 'pytest'
 - task: Bash@3
-  displayName: 'Version python'
+  displayName: 'Cat coverage'
   inputs:
     targetType: 'inline'
     script: |
       # Write your commands here
-      echo 'Show Python version'
-      python --version
-
-- task: Bash@3
-  displayName: 'Show PATH'
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      echo $PATH
-      
+      cat junit/test-results.xml
